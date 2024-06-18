@@ -1,44 +1,34 @@
 plugins {
-  id 'com.palantir.git-version' version '0.11.0'
-  id 'groovy'
-  id 'java-gradle-plugin'
-  id 'com.gradle.plugin-publish' version '0.10.1'
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
-description = 'Gradle POEditor Plugin'
-group = 'de.jansauer.poeditor'
-version = gitVersion()
+description = 'Gradle POEditor Plugin.'
+group = 'com.poeditor.plugin'
+version = '1.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-  mavenCentral()
-  maven {
-    url  "https://dl.bintray.com/rburgst/android"
-  }
+    mavenCentral()
 }
 
 dependencies {
-  // https://http-builder-ng.github.io/http-builder-ng/
-  // https://http-builder-ng.github.io/http-builder-ng/docs/javadoc/
-  compile 'io.github.http-builder-ng:http-builder-ng-okhttp:1.0.4'
-
-  testCompile('org.spockframework:spock-core:1.3-groovy-2.5') {
-    exclude(module: 'groovy-all')
-  }
+    implementation 'org.apache.groovy:groovy:4.0.14'
 }
 
-pluginBundle {
-  website = 'https://github.com/jansauer/gradle-poeditor-plugin'
-  vcsUrl = 'https://github.com/jansauer/gradle-poeditor-plugin'
-  description = 'Gradle POEditor Plugin.'
-  tags = ['i18n', 'poeditor', 'translation', 'terms', 'gitlab', 'angular']
-
-  plugins {
-    poeditorPlugin {
-      id = 'de.jansauer.poeditor'
-      displayName = 'Gradle POEditor Plugin'
+gradlePlugin {
+    website = 'https://github.com/VadymVolin/gradle-poeditor-plugin'
+    vcsUrl = 'https://github.com/VadymVolin/gradle-poeditor-plugin'
+    plugins {
+        poeditorPlugin {
+            id = 'com.poeditor.plugin'
+            implementationClass = 'com.poeditor.plugin.POEditorPlugin'
+            displayName = 'Gradle POEditor Plugin'
+            description = 'Gradle POEditor Plugin'
+            tags.set(['i18n', 'poeditor', 'translation', 'terms', 'gitlab', 'android'])
+        }
     }
-  }
 }
