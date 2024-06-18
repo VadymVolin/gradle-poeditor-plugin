@@ -15,7 +15,7 @@ plugins {
 poeditor {
   apiKey = 'd41d8cd98f00b204e9800998ecf8427e'
   projectId = '12345'
-
+  type = "json"
   terms lang: 'en', file: 'messages.xmb'
   
   trans lang: 'de', file: 'build/translations_de.xtb'
@@ -34,9 +34,10 @@ poeditor {
 poeditor {
   apiKey = 'd41d8cd98f00b204e9800998ecf8427e'
   projectId = '12345'
+  type = "json"
 
   terms lang: 'en', file: 'messages.xmb', updating: 'terms_translations'
-  trans lang: 'it', file: 'build/translations_it.csv', type: 'csv', tags: ['feature1','feature2']
+  trans lang: 'it', file: 'build/translations_it.csv', tags: ['feature1','feature2']
 }
 ```
 
@@ -44,6 +45,7 @@ poeditor {
   Can be found at [My Account > API Access](https://poeditor.com/account/api)
 * `projectId`: Id of poeditor project terms and translations are pulled from and pushed to.<br>
    Can also be found at [My Account > API Access](https://poeditor.com/account/api)
+* `type`: File format (po, pot, mo, xls, csv, resw, resx, android_strings, apple_strings, xliff, properties, key_value_json, json, xmb, xtb) (Default: 'xtb')
 * `terms`: Can be used multiple times to define terms to push to poeditor.
   * `updating`: One of 'terms', 'terms_translations' or 'translations' (Default: 'terms')
   * `file`: Local file to be uploaded ([List of supported formats](https://poeditor.com/help/#SupportedFormats))
@@ -54,8 +56,6 @@ poeditor {
     ones added). Ignored if updating is set to 'translations' (Default: false)
 * `trans`: Can be used multiple times to define translations to pull from poeditor.
   * `lang`: The language code (Default: 'en')
-  * `type`: File format (po, pot, mo, xls, csv, resw, resx, android_strings, apple_strings, xliff, 
-     properties, key_value_json, json, xmb, xtb) (Default: 'xtb')
   * `file`: Location where the downloaded translations are stored.
   * `tags`: Pull translations that match *all* of the given tags (Default: [])
 
